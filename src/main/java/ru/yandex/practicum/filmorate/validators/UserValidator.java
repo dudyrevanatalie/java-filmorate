@@ -18,7 +18,7 @@ public class UserValidator {
             log.info("Email должен содержать символ \"@\"");
             throw new ValidationException("Email должен содержать символ  \"@\".");
         }
-        if (user.getLogin() == null || user.getLogin().equals("") || user.getLogin().contains(" ")) {
+        if (user.getLogin().isBlank() || user.getLogin().contains(" ")) {
             log.info("Login неправильный");
             throw new ValidationException("Login неправильный");
         }

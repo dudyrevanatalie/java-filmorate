@@ -10,12 +10,12 @@ import java.time.LocalDate;
 public class FilmValidator {
     private static final LocalDate BIRTHDAY_MOVIES = LocalDate.of(1895, 12, 28);
 
-    public static boolean validate(Film film) throws ValidationException {
+    public static void validate(Film film) {
         if (film.getDuration() <= 0) {
             log.info("Продолжительность фильма должна быть положительной");
             throw new ValidationException("Продолжительность фильма должна быть положительной!");
         }
-        if (film.getName() == null || film.getName().equals("")) {
+        if (film.getName().isBlank()) {
             log.info("Название фильма не может быть пустым");
             throw new ValidationException("Название фильма не может быть пустым!");
         }
@@ -27,6 +27,5 @@ public class FilmValidator {
             log.info("Описание фильма слишком длинное");
             throw new ValidationException("Описание фильма должно быть не больше 200 символов!");
         }
-        return false;
     }
 }

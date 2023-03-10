@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 
-@Data
+@Data//тут все хорошо, сказали в тз так написано в подсказке
 public class Film {
     private Integer id;
     @NotBlank

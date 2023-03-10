@@ -17,7 +17,6 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("/films")
-@Validated
 
 public class FilmController {
     private int filmId = 1;
@@ -29,7 +28,7 @@ public class FilmController {
     }
 
     @PostMapping
-    public Film addFilm(@RequestBody @Valid Film film) throws ValidationException {
+    public Film addFilm(@RequestBody @Valid Film film) {
         FilmValidator.validate(film);
         if (films.values().stream().noneMatch(u -> u.getName().equals(film.getName()))) {
             film.setId(filmId++);

@@ -16,13 +16,12 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("/users")
-@Validated
 public class UserController {
     private int userId = 1;
     private final Map<Integer, User> users = new HashMap<>();
 
     @PostMapping
-    public User createUser(@RequestBody @Valid User user) throws ValidationException {
+    public User createUser(@RequestBody @Valid User user) {
         log.debug("Добавление пользователя {}", user);
         UserValidator.validate(user);
         if (users.values().stream().noneMatch(u -> u.getLogin().equals(user.getLogin()))) {

@@ -8,12 +8,12 @@ import java.util.Set;
 
 @Data
 public class Film {
-    long id;
-    String name;
-    String description;
-    LocalDate releaseDate;
-    int duration;
-    Set<Long> usersWhoLikes = new HashSet<>();
+    private long id;
+    private String name;
+    private String description;
+    private LocalDate releaseDate;
+    private int duration;
+    private Set<Long> usersWhoLikes = new HashSet<>();
 
     public Set<Long> getUsersWhoLikes() {
         return usersWhoLikes;
@@ -26,4 +26,5 @@ public class Film {
     public void removeFromUsersWhoLikes(long id) {
         usersWhoLikes.remove(id);
     }
+
 }

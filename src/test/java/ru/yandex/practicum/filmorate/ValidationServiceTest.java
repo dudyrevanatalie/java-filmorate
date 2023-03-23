@@ -103,7 +103,9 @@ public class ValidationServiceTest {
         Film film = new Film();
         film.setName("Name");
         film.setDuration(60);
-        film.setDescription("Descriptionvnjvsdvnsdnvjsdnvjksdnvjksdnvjksndkjvnsdjkvnsdkjvnsdkjnvksjdnvkjsdnvkssdnvjksndvkjsndvjknsdjvnsjdkvnjksdnvjksdnvjsndjkvnsdkjvnsjkdnvjksdnvjksdnvjknsdjkvnsdkjvnskdjvnksjdnvkjsdnvjksdnvkjsndkvnsdkj");
+        film.setDescription("Descriptionvnjvsdvnsdnvjsdnvjksdnvjksdnvjksndkjvnsdjkvnsdkjvnsdkjnvksjdnvkjsdnvkssdnvj" +
+                "ksndvkjsndvjknsdjvnsjdkvnjksdnvjksdnvjsndjkvnsdkjvnsjkdnvjksdnvjksdnvjknsdjkvnsdkjvnskdjvnksjdnvkjsdnv" +
+                "jksdnvkjsndkvnsdkj");
         film.setReleaseDate(LocalDate.of(1980, 12, 30));
 
         assertThrows(ValidationException.class, () -> ValidationService.validate(film));

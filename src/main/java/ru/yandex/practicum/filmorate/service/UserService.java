@@ -10,9 +10,13 @@ import java.util.List;
 
 @Service
 public class UserService {
+    private final UserStorage userStorage;
+    private long id = 1;
+
     @Autowired
-    private UserStorage userStorage;
-    long id = 1;
+    public UserService(UserStorage userStorage) {
+        this.userStorage = userStorage;
+    }
 
     public List<User> findAll() {
         return userStorage.findAll();
@@ -46,13 +50,16 @@ public class UserService {
     }
 
     public void addToFriends(long userId1, long userId2) {
+        if (userId1 == userId2) {
+            throw new RuntimeException("ID пользователей совпадают!");
+        }
+
         User user1 = userStorage.getById(userId1);
         User user2 = userStorage.getById(userId2);
 
         if (user1 == null || user2 == null) {
             throw new RuntimeException("Невозможно добавить пользователя в друзья т.к. один из пользователей не найден");
         }
-
         user1.addFriend(userId2);
         user2.addFriend(userId1);
     }

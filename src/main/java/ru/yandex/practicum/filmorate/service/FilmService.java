@@ -11,11 +11,15 @@ import java.util.List;
 
 @Service
 public class FilmService {
+    private final FilmStorage filmStorage;
+    private final UserStorage userStorage;
+    private long id = 1;
+
     @Autowired
-    FilmStorage filmStorage;
-    @Autowired
-    UserStorage userStorage;
-    long id = 1;
+    public FilmService(FilmStorage filmStorage, UserStorage userStorage) {
+        this.filmStorage = filmStorage;
+        this.userStorage = userStorage;
+    }
 
     public List<Film> findAll() {
         return filmStorage.findAll();
@@ -31,6 +35,16 @@ public class FilmService {
 
     public Film add(Film film) {
         ValidationService.validate(film);
+
+        for (Film filmStr : filmStorage.findAll()) {
+            if (filmStr.getName().equals(film.getName()) ||
+                    filmStr.getDescription().equals(film.getDescription()) ||
+                    filmStr.getReleaseDate().equals(film.getReleaseDate()) ||
+                    filmStr.getDuration() == film.getDuration()) {
+                throw new RuntimeException("Такой фильм уже существует!");
+            }
+        }
+
         film.setId(id++);
         filmStorage.add(film);
         return film;

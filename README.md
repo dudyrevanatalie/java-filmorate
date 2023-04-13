@@ -1,6 +1,6 @@
 # java-filmorate
 ## Краткое описание БД - из каких таблиц и представлений состоит.
-![](../../Downloads/QuickDBD-export.png)
+![alt text](../../Downloads/QuickDBD-export.png)
 
 ## Пояснение
 

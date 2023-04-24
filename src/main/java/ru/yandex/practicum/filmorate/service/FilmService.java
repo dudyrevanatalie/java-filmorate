@@ -37,6 +37,14 @@ public class FilmService {
 
     public Film add(Film film) {
         ValidationService.validate(film);
+        for (Film filmStr : filmStorage.findAll()) {
+            if (filmStr.getName().equals(film.getName()) ||
+                    filmStr.getDescription().equals(film.getDescription()) ||
+                    filmStr.getReleaseDate().equals(film.getReleaseDate()) ||
+                    filmStr.getDuration() == film.getDuration()) {
+                throw new RuntimeException("Такой фильм уже существует!");
+            }
+        }
         return filmStorage.add(film);
     }
 

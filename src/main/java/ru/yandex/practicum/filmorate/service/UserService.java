@@ -28,6 +28,14 @@ public class UserService {
         if (user.getName() == null || user.getName().equals("")) {
             user.setName(user.getLogin());
         }
+        for (User userStr : userStorage.findAll()) {
+            if (userStr.getName().equals(user.getName()) ||
+                    userStr.getEmail().equals(user.getEmail()) ||
+                    userStr.getLogin().equals(user.getLogin()) ||
+                    userStr.getBirthday() == user.getBirthday()) {
+                throw new RuntimeException("Такой user уже существует!");
+            }
+        }
         User addedUser = userStorage.add(user);
         return addedUser;
     }

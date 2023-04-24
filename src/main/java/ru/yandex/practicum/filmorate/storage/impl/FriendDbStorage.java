@@ -56,11 +56,9 @@ public class FriendDbStorage implements FriendStorage {
     }
 
     private LocalDate dateFormatter(String date) {
-        String[] parts = new String[3];
-        parts = date.split("-");
-        LocalDate localDate = LocalDate.of(Integer.parseInt(parts[0]),
+        String[] parts = date.split("-");
+        return LocalDate.of(Integer.parseInt(parts[0]),
                 Integer.parseInt(parts[1]),
                 Integer.parseInt(parts[2]));
-        return localDate;
     }
 }
